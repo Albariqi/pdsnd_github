@@ -16,8 +16,8 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
 
-    
-    print('Hello! Let\'s explore some US bikeshare data!')
+
+    print('Hello! Let\'s explore some USA bikeshare data!')
     Invalid_input=  'Invalid input !!! Please try again'
 
     while True :
@@ -43,8 +43,8 @@ def get_filters():
             break
         else:
             print(Invalid_input)
-            
-          
+
+
 
 
     print('-'*50)
@@ -66,7 +66,7 @@ def load_data(city, month, day):
     df = pd.read_csv(file_name)
 
 #convert Start Time To Datetime formate
-    df['Start Time']=pd.to_datetime(df['Start Time'])    
+    df['Start Time']=pd.to_datetime(df['Start Time'])
 #filtring the Dataframe
 # filter by month
     if month != 'all':
@@ -74,11 +74,11 @@ def load_data(city, month, day):
         months = ['january', 'february', 'march', 'april', 'may', 'june']
         month = months.index(month) + 1
         df = df.loc[df['month'] == month]
-#filter by day 
+#filter by day
     if day != 'all':
         df['day'] = df['Start Time'].dt.day_name()
         df = df.loc[df['day'] == day.title()]
-      
+
 
     return df
 
@@ -88,10 +88,10 @@ def time_stats(df):
 
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
-    
+
     #convert Start Time To Datetime formate
     df['Start Time']=pd.to_datetime(df['Start Time'])
-    #Extartct month,day, hour to new columns 
+    #Extartct month,day, hour to new columns
     df['month']=df['Start Time'].dt.month
     df['day']=df['Start Time'].dt.day_name()
     df['start_hour']=df['Start Time'].dt.hour
@@ -183,7 +183,7 @@ def user_stats(df):
         earliest = df['Birth Year'].min()
         recent = df['Birth Year'].max()
         common = df['Birth Year'].mode()[0]
-        
+
         print("Earliest year of birth: " ,earliest)
         print("Most recent year of birth: " ,recent)
         print("Most common year of birth: " ,common)
@@ -202,8 +202,8 @@ def raw_data(df):
             line += 5
             user_input = input('Would you like to see more raw data? Enter yes or no.\n')
         else:
-            break 
-    
+            break
+
 def main():
     while True:
         city, month, day = get_filters()
